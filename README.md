@@ -7,6 +7,14 @@
 ![alt text](image-1.png)
 
 
+# Middleware Concept:
+![Architecture ](image-2.png)
+![types of middle ware](image.png)
+
+
+* Check the code in Main.ts and book.middleware.ts
+![Output of Modular and global](image-3.png)
+
 ## Installation
 
 ```bash
