@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from "@nestjs/common";
 import { BookService } from "./book.service";
 import { Book } from "./data/book.dto";
 
@@ -27,6 +27,14 @@ export class BookController {
     @Post('/add')
     addbook(@Body() book: Book): string {
         return this.bookservice.addbook(book)
+    }
+
+    @Get('findbookbyid/:id')
+    findbyid(@Param('id',ParseIntPipe) id: number): any{
+        console.log(id,typeof(id));
+        // let a = id
+        // return " returns error if not passed integer"
+        return this.bookservice.findbookbyid(id.toString());
     }
 
 }

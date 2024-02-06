@@ -10,7 +10,7 @@ export class BookService{
 public books : Book[] = [];
 
 addbook(book : Book) : string {
-    book.id = uuidv4();
+    // book.id = uuidv4();
     this.books.push(book);
     return ' this book has been pushed succsfly';
 }
@@ -35,8 +35,16 @@ deletebook(bookId : string): string {
 }
 
 //findallbook
-
 findallBook() : Book[] {
     return this.books;
 }
+
+//findallbook
+findbookbyid(id: string) : Book{
+    console.log("Finding Book")
+    const matchedbook = this.books.find(book => book.id === id);
+    console.log(matchedbook)
+    return matchedbook;
+}
+
 }

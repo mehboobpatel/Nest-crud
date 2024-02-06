@@ -15,6 +15,11 @@
 * Check the code in Main.ts and book.middleware.ts
 ![Output of Modular and global](image-3.png)
 
+
+# Pipes Concept:
+
+![pipes architecture](image-4.png)
+
 ## Installation
 
 ```bash
