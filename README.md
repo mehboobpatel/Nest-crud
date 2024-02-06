@@ -20,6 +20,25 @@
 
 ![pipes architecture](image-4.png)
 
+* So we here we checking the input type from the controller before passing to service function
+
+![alt text](image-5.png)
+
+![alt text](image-6.png)
+
+After adding ParseIntPipe in the code we now get the desired input
+![alt text](image-7.png)
+
+![alt text](image-8.png)
+
+Validation if you pass any thing apart from number in the url than pipe will throw error
+![alt text](image-9.png)
+
+Otherwise it wil give you the array
+* note u can directly return without console.log in the service.ts function of findbookbyid
+
+![alt text](image-10.png)
+
 ## Installation
 
 ```bash
