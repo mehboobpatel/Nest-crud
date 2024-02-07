@@ -39,6 +39,38 @@ Otherwise it wil give you the array
 
 ![alt text](image-10.png)
 
+
+# Custom PIPES
+* Checkout Pipe.ts and its importing in the controller under add method
+
+
+![alt text](image-11.png)
+
+
+*Note check for the DTO file which should have @IsInt Decortr first and than create pipe.ts file 
+
+        ```
+            const bookClass = plainToInstance(Book, value);
+        ```
+the above line is basically transforming the values came as input into a class(object/instance) called bookClass with refernce to structure defined in BookDto  here the @IsInt()  validtrs are not considered
+
+        ```
+    const errors = await validate(bookClass);
+        ```
+the above line is creating array of erros and  here the @IsInt()  validtrs are CONSIDEREd since have to validate
+
+  
+  * FOR True case 
+
+![Passed](image-13.png)
+
+
+  * FOR FAILED  case 
+  we passing id as string
+  and title as number
+
+![Failed](image-14.png)
+
 ## Installation
 
 ```bash

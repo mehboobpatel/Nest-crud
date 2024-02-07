@@ -7,7 +7,11 @@ import { v4 as uuidv4 } from 'uuid';
 @Injectable()
 export class BookService{
 
+
 public books : Book[] = [];
+constructor(){
+    console.log("service.ts constr")
+}
 
 addbook(book : Book) : string {
     // book.id = uuidv4();
@@ -27,7 +31,7 @@ updatebook(book: Book): string {
 }
 
 // deletebook
-deletebook(bookId : string): string {
+deletebook(bookId : number): string {
  this.books = this.books.filter((rdbookobjcts)=>{
     return rdbookobjcts.id !== bookId;
  });
@@ -40,7 +44,7 @@ findallBook() : Book[] {
 }
 
 //findallbook
-findbookbyid(id: string) : Book{
+findbookbyid(id: number) : Book{
     console.log("Finding Book")
     const matchedbook = this.books.find(book => book.id === id);
     console.log(matchedbook)
