@@ -43,7 +43,7 @@ Otherwise it wil give you the array
 # Custom PIPES
 * Checkout Pipe.ts and its importing in the controller under add method
 
-
+# Custom validation via external pipe.ts
 ![alt text](image-11.png)
 
 
@@ -71,7 +71,31 @@ the above line is creating array of erros and  here the @IsInt()  validtrs are C
 
 ![Failed](image-14.png)
 
-## Installation
+
+# Builtind validation via internal pipe method/function
+
+* BEST Practice to you since nest handles the class transformer and class validation method.
+
+Controller.ts
+```
+    @Post('/add2')
+    addbook2(@Body(new ValidationPipe()) book: Book): any {
+        return this.bookservice.addbook(book)
+    }
+
+```
+Failed Case
+![Failed Case](image-12.png)
+
+
+Passed Case
+![alt text](image-16.png)
+
+## for random id generation
+
+*for testing purpose dont use this when sending id value manually you can remove the code 
+
+![alt text](image-15.png)
 
 ```bash
 $ npm install   
