@@ -103,6 +103,42 @@ $ npm install
 $ npm install uuid
 ```
 
+
+# Custom Exceptions
+
+include in the controller 
+```
+    @Get("")
+    hellobook(): string {
+
+        throw new CustomException
+
+        throw new BadRequestException
+
+        //since the above code executes the below code wont be considered and vice versa
+        return "Hello this is the first page without routes"
+    }
+
+```
+![alt text](image-17.png)
+
+
+Sending Custom Response just to have log we can use custom Filters check Bookfilter.ts
+
+```
+    @Get("/custfiltexcept")
+    @UseFilters(BookFilter)
+    custfiltexcept(): string {
+
+        throw new BadRequestException
+
+        //since the above code executes the below code wont be considered and vice versa
+        return "Hello this is the first page without routes"
+    }
+```
+
+![alt text](image-18.png)
+
 ## Running the app
 
 ```bash

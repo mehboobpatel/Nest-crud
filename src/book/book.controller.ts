@@ -1,7 +1,9 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, ValidationPipe } from "@nestjs/common";
+import { BadRequestException, Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, UseFilters, ValidationPipe } from "@nestjs/common";
 import { BookService } from "./book.service";
 import { Book } from "./data/book.dto";
 import { BookPipe } from "./pipes/pipes";
+import { CustomException } from "./book.exception";
+import { BookFilter } from "./book.filter";
 
 @Controller("book")
 export class BookController {
@@ -9,6 +11,30 @@ export class BookController {
     constructor(private bookservice: BookService) {
         console.log('controller constr')
     }
+
+
+    @Get("")
+    hellobook(): string {
+
+        throw new CustomException
+
+        throw new BadRequestException
+
+        //since the above code executes the below code wont be considered and vice versa
+        return "Hello this is the first page without routes"
+    }
+
+    @Get("/custfiltexcept")
+    @UseFilters(BookFilter)
+    custfiltexcept(): string {
+
+        throw new BadRequestException
+
+        //since the above code executes the below code wont be considered and vice versa
+        return "Hello this is the first page without routes"
+    }
+
+
 
     @Get("/findall")
     getAllbooks(): Book[] {
