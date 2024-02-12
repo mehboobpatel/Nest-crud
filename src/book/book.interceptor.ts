@@ -7,9 +7,9 @@ export class BookInterceptor implements NestInterceptor{
     intercept(context: ExecutionContext, next: CallHandler<any>): Observable<any> {
         console.log('this is from BookInterceptor class');
         const ctx = context.switchToHttp()
-        const request = ctx.getRequest<Request>()
-        request.body.name = "changing response"
-        request.body.age = 22
+        const requeststrd = ctx.getRequest<Request>()
+        requeststrd.body.name = "changing response"
+        requeststrd.body.age = 22
         return next.handle()
         
     }
