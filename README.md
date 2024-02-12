@@ -164,10 +164,24 @@ Sending Custom Response just to have log we can use custom Filters check Bookfil
 * you can apply it on single method by mentioning 
 * below @Get or apply it to whole controller all methods by 
 * mentioning it below @Controller
+* to use it globally throughout the app u need to add app.use in App.Module or root module file
+![alt text](image-22.png)
+
+![alt text](image-20.png)
+
+Passed: 
+![alt text](image-21.png)
 
 
+## INTERCEPTORS
 
+    Middleware intercepts the incoming request and performs pre-processing tasks.
 
+    Route handler processes the request and generates a response.
+
+    Interceptor intercepts the outgoing response and performs post-processing tasks.
+
+![interceptr](image-23.png)
 
 ## Running the app
 

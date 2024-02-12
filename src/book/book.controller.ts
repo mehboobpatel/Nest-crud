@@ -1,11 +1,13 @@
-import { BadRequestException, Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, UseFilters, UseGuards, ValidationPipe } from "@nestjs/common";
+import { BadRequestException, Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Req, Res, UseFilters, UseGuards, UseInterceptors, ValidationPipe } from "@nestjs/common";
 import { BookService } from "./book.service";
 import { Book } from "./data/book.dto";
 import { BookPipe } from "./pipes/pipes";
 import { CustomException } from "./book.exception";
 import { BookFilter } from "./book.filter";
-import { error } from "console";
+import { Console, error } from "console";
 import { BookGuard } from "./book.guard";
+import { BookInterceptor } from "./book.interceptor";
+import { Request, Response } from "express";
 
 @Controller("book")
 export class BookController {
@@ -13,7 +15,10 @@ export class BookController {
     constructor(private bookservice: BookService) {
         console.log('controller constr')
     }
+    
+    
 
+    private namesd : string = "adsf";
 
     @Get("")
     hellobook(): string {
@@ -54,9 +59,17 @@ export class BookController {
     //to apply this to all the methods u can simply mention this 
     //@UseGuard below @controller
     guard(){
+        
         return "this  guard working"
     }
 
+    @Post('/intercptr')
+    @UseInterceptors(BookInterceptor)
+    Intercept(@Req() req: Request, @Res() res: Response ){
+
+         return res.json(req.body)
+        // return JSON.stringify(req.body)
+    }
 
 
     @Get("/findall")
