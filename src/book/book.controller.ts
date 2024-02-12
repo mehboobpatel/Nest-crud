@@ -1,9 +1,11 @@
-import { BadRequestException, Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, UseFilters, ValidationPipe } from "@nestjs/common";
+import { BadRequestException, Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, UseFilters, UseGuards, ValidationPipe } from "@nestjs/common";
 import { BookService } from "./book.service";
 import { Book } from "./data/book.dto";
 import { BookPipe } from "./pipes/pipes";
 import { CustomException } from "./book.exception";
 import { BookFilter } from "./book.filter";
+import { error } from "console";
+import { BookGuard } from "./book.guard";
 
 @Controller("book")
 export class BookController {
@@ -26,12 +28,33 @@ export class BookController {
 
     @Get("/custfiltexcept")
     @UseFilters(BookFilter)
-    custfiltexcept(): string {
 
+    //to apply this to all the methods u can simply mention this 
+    //@UseFilter below @controller
+    custfiltexcept(): string {
         throw new BadRequestException
 
-        //since the above code executes the below code wont be considered and vice versa
-        return "Hello this is the first page without routes"
+        }
+
+
+    @Get("/definedincontr")
+    definedincontr(): string {
+
+        throw new BadRequestException( {
+            status: 400,
+            error: "this is defined in controller function",
+            host: "localhost",
+            anything: "asdf",
+            numberany: 123
+        })
+    }
+
+    @Get("/guard")
+    @UseGuards(new BookGuard())
+    //to apply this to all the methods u can simply mention this 
+    //@UseGuard below @controller
+    guard(){
+        return "this  guard working"
     }
 
 

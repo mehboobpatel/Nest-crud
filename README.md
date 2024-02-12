@@ -136,8 +136,38 @@ Sending Custom Response just to have log we can use custom Filters check Bookfil
         return "Hello this is the first page without routes"
     }
 ```
-
 ![alt text](image-18.png)
+
+*BEST WAY to Define Exception is inside controllr 
+
+```
+    @Get("/definedincontr")
+    definedincontr(): string {
+
+        throw new BadRequestException( {
+            status: 400,
+            error: "this is defined in controller function",
+            host: "localhost",
+            anything: "asdf",
+            numberany: 123
+        })
+    }
+```
+
+![alt text](image-19.png)
+
+##Guards
+
+* to validate the url content like if theres any 
+* string or header that is must required we use guard 
+* and than include it in controller using @UseGuard
+* you can apply it on single method by mentioning 
+* below @Get or apply it to whole controller all methods by 
+* mentioning it below @Controller
+
+
+
+
 
 ## Running the app
 

@@ -8,7 +8,10 @@ import { v4 as uuidv4 } from 'uuid';
 export class BookService{
 
 
+//so here we are declaring a variable books and assigning it a type of Book and than array and than intializing it with no values
+// if we wanted books to be of string type it would be books : string[] : [1,"123","adsf"]
 public books : Book[] = [];
+
 constructor(){
     console.log("service.ts constr")
 }
