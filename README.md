@@ -186,6 +186,52 @@ Passed:
 
 ![alt text](image-24.png)
 ![alt text](image-25.png)
+
+
+
+## Authentication 
+
+We will be using Passport library for authentication process Passport helps to create Strategies which are utilized by Guards
+
+checkout 
+https://docs.nestjs.com/recipes/passport
+
+
+we first install 
+```
+npm install --save @nestjs/passport passport passport-local
+
+npm install --save-dev @types/passport-local
+
+```
+
+firstly create User class with name user.entity.ts (similar to DTO but not DTO)
+
+Than add array of user list in usre.service.ts and define the validate function in the same
+
+
+Post that create a Auth folder/Auth Module under src
+
+create strategy file (passport.local.strategy)
+and define the pre validate function which will call the service validate function.
+
+CHECKS :---
+passed case
+![Passed case](image-26.png)
+
+failed case for wrong password
+![alt text](image-27.png)
+
+failed case for wrong Username
+![alt text](image-28.png)
+
+
+Passed scenes
+
+
+
+
+
 ## Running the app
 
 ```bash

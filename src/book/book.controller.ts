@@ -66,8 +66,9 @@ export class BookController {
     @Post('/intercptr')
     @UseInterceptors(BookInterceptor)
     Intercept(@Req() req: Request, @Res() res: Response ){
-
-         return res.json(req.body)
+        const a = req.body
+         console.log(req.method,req.hostname,req.body,req.ip)
+         return res.json(a)
         // return JSON.stringify(req.body)
     }
 
