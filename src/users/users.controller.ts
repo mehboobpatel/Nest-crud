@@ -1,5 +1,6 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { request } from 'express';
 
 @Controller('users')
 export class UsersController {
@@ -8,9 +9,11 @@ export class UsersController {
 
   @Get('hello')
   @UseGuards(AuthGuard('local'))
-  gethello() : string{
+  gethello(@Request() dfd) : string{
 
-    return " this is from user controller"
+    return JSON.stringify(dfd.user) + "asdf" ; // this return will give you respone in browser
+      // and you can t use request.user + "asdf"
+      // you can use JSON.stringfy(request.user) + "asdf"
   }
 
   // @Post()

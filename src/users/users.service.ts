@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Users } from './users.entity';
+import { CONSTANTS } from 'src/auth/auth.constants';
 
 @Injectable()
 export class UsersService {
@@ -9,12 +10,17 @@ export class UsersService {
     {
     username: "Maheboob",
     password: "password",
-    email: "maheboob.p@kelpglobal.com"
+    email: "maheboob.p@kelpglobal.com",
+    age: 22,
+    role: CONSTANTS.ROLES.ANDROID_DEVELOPER
   },
   {
     username: "User2",
     password: "password",
-    email: "user2@kelpglobal.com"
+    email: "user2@kelpglobal.com",
+    age: 25,
+    role: CONSTANTS.ROLES.WEB_DEVELOPER
+
   }
 ]
 

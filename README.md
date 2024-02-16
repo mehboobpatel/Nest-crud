@@ -191,7 +191,9 @@ Passed:
 
 ## Authentication 
 
-We will be using Passport library for authentication process Passport helps to create Strategies which are utilized by Guards
+We will be using Passport library for authentication 
+https://www.passportjs.org/packages/
+process Passport helps to create Strategies which are utilized by Guards
 
 checkout 
 https://docs.nestjs.com/recipes/passport
@@ -226,7 +228,140 @@ failed case for wrong Username
 ![alt text](image-28.png)
 
 
-Passed scenes
+## AUHTORIZATION
+install 
+```
+npm install --save @nestjs/jwt passport-jwt
+
+npm install --save-dev @types/passport-jwt
+```
+
+modify the app.controller endpoint
+
+with 
+```
+  @Get('hello')
+  @UseGuards(AuthGuard('local'))
+  gethello(@Request() request) : any{
+
+    const token = this.authservice.generateToken(request.user)
+    console.log(token)
+    return request.user
+  }
+```
+
+than create auth.service.ts ( for a Token generation function in the whole payload(i.e request object containing all data))
+
+* check the auth.module.ts to import builtin module(JWT module )
+
+* check the jwt.strategy.ts super() method
+
+
+now when we send a request with username and password 
+it first calls the 
+
+1. 
+  @Get('hello')
+  @UseGuards(AuthGuard('local'))
+
+than it will pass to passport.local.strategy.ts
+2. 
+ validate(username: string,password : string): any
+    {          
+        console.log('Hello ')
+
+
+        const user : Users = this.userService.getUserbyname(username,password)
+        if(!user){
+            console.log("User not found in strategy",username)
+        }
+        if(user == undefined) {
+            throw new Un
+
+3. than it will pass to the user.service.ts 
+
+getUserbyname(userName: string, password: string): any {
+  console.log(userName, ' sds', password);
+  if(user1){
+
+  if (user1.password !== password || user1.password.length === 0) {
+    console.log('Password does not match for user:', userName);
+    return user1;
+  }
+
+Than ONCE YOU RECIEVED correct username and password 
+
+it will again pass loopback and give the control to app controller and will excecute the method define in the method
+
+```
+  gethello(@Request() request) : any{
+    const token = this.authservice.generateToken(request.user)
+    console.log(token)
+    return request.user
+  }
+  ```
+
+4. than inside this it will generate the token by calling
+the AuthService Generatetoken function 
+
+```
+export class AuthService {
+    constructor(private readonly jwtservice : JwtService){
+
+    }
+    //idCard
+    generateToken(payload: Users): string{
+        return this.jwtservice.sign(payload)
+    }
+}
+```
+
+which creates a token and stores it in the token variable
+
+
+```
+ const token = this.authservice.generateToken(request.user)
+    console.log(token)
+    return request.user
+```
+
+so you got the token 
+
+![Token generated](image-29.png)
+
+Now use this token and hit androiddev route
+
+* now under thunderclient/postman check for Auth and just add this token under bearer option
+
+![bearer token](image-30.png)
+
+
+## ROLE BASED GUARD
+add role: string in the Users.entity.ts
+and in auth.constant.ts define ROLEs
+and in userservice.ts array add the role elemnt to the object
+
+create route for webdev in controller
+
+now the thing is even the androiddev role can access webdev 
+
+proof:
+![token](image-31.png)
+
+![alt text](image-32.png)
+
+
+
+Androidev: 
+![alt text](image-33.png)
+
+androiddev accesing WebDev with same access token
+![alt text](image-34.png)
+
+SO to avoid these we will use role.guard.ts 
+
+
+
 
 
 
